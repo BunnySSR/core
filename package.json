@@ -2,7 +2,7 @@
   "name": "simple-api-ssr",
   "scripts": {
     "commit": "git-cz",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release && git push"
   },
   "version": "0.0.0-development",
   "repository": {
