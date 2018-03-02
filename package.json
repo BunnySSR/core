@@ -1,13 +1,13 @@
 {
-  "private": true,
+  "name": "simple-api-ssr",
   "scripts": {
-    "commit": "./node_modules/.bin/git-cz",
+    "commit": "git-cz",
     "semantic-release": "semantic-release"
   },
   "version": "0.0.0-development",
   "repository": {
     "type": "git",
-    "url": "https://github.com/boxsnake-php/simple-api-ssr.git"
+    "url": "git+https://github.com/boxsnake-php/simple-api-ssr.git"
   },
   "devDependencies": {
     "commitizen": "^2.9.6",
@@ -28,5 +28,12 @@
     "publish": [
       "@semantic-release/github"
     ]
-  }
+  },
+  "description": "A simple api-based server-side-rendering framework written in PHP.",
+  "bugs": {
+    "url": "https://github.com/boxsnake-php/simple-api-ssr/issues"
+  },
+  "homepage": "https://github.com/boxsnake-php/simple-api-ssr#readme",
+  "author": "Alex Fang <deeno@qq.com>",
+  "license": "MIT"
 }
