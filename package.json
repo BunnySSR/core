@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "scripts": {
+    "commit": "./node_modules/.bin/git-cz",
+    "semantic-release": "semantic-release"
+  },
+  "version": "0.0.0-development",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boxsnake-php/simple-api-ssr.git"
+  },
+  "devDependencies": {
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.1.0",
+    "semantic-release": "^12.4.1"
+  },
+  "dependencies": {},
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "release": {
+    "verifyConditions": [
+      "@semantic-release/github"
+    ],
+    "prepare": [],
+    "publish": [
+      "@semantic-release/github"
+    ]
+  }
+}
