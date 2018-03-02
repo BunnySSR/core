@@ -1,16 +1,23 @@
 {
     "name": "boxsnake/simple-api-ssr",
     "description": "A simple api-based server-side-rendering framework written in PHP.",
-    "type": "framework",
-    "require": {
-        "php": ">=5.4.0",
-        "rmccue/requests": "^1.7"
-    },
-    "license": "MIT",
     "authors": [
         {
             "name": "Alex Fang",
             "email": "deeno@qq.com"
         }
-    ]
+    ],
+    "type": "framework",
+    "require": {
+        "php": ">=5.4.0",
+        "rmccue/requests": "^1.7",
+        "shudrum/array-finder": "^1.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Pages\\": "src/pages/",
+            "Util\\": "src/utils/"
+        }
+    }
 }
