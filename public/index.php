@@ -1,43 +1,24 @@
 <?php
-require dirname(__DIR__) . '/vendor/autoload.php';
+define('APP_ROOT', dirname(__DIR__));
 
-use Util\Api\Getter as ApiGetter;
+require APP_ROOT . '/vendor/autoload.php';
 
-$api = new ApiGetter();
-echo '<pre>';
+use Util\Api\Getter      as ApiGetter;
+use Util\Loader\Config   as ConfigLoader;
+use Util\Loader\Template as TemplateLoader;
 
-echo '# Test with string';
-echo PHP_EOL;
-print_r($api->load('https://raw.githubusercontent.com/boxsnake-php/simple-api-ssr/master/example/new.json'));
-echo PHP_EOL . str_repeat('-', 80) . PHP_EOL;
+$service = empty($_GET['service']) ? '' : $_GET['service'];
+unset($_GET['service']);
 
-echo '# Test with invalid config';
-echo PHP_EOL;
-print_r($api->load([
-    'https://raw.githubusercontent.com/boxsnake-php/simple-api-ssr/master/example/new.json'
-]));
-echo PHP_EOL . str_repeat('-', 80) . PHP_EOL;
+$api      = new ApiGetter();
+$config   = new ConfigLoader();
+$template = new TemplateLoader();
 
-echo '# Test config without url';
-echo PHP_EOL;
-print_r($api->load([
-    '_old' => [],
-    '_new' => [
-        'url' => 'https://raw.githubusercontent.com/boxsnake-php/simple-api-ssr/master/example/new.json'
-    ]
-]));
-echo PHP_EOL . str_repeat('-', 80) . PHP_EOL;
+$template->set_root(APP_ROOT . '/src/pages/');
+$config->set_root(APP_ROOT . '/src/config/');
 
-echo '# Test config with bad json';
-echo PHP_EOL;
-print_r($api->load([
-    '_new' => [
-        'url' => 'https://raw.githubusercontent.com/boxsnake-php/simple-api-ssr/master/example/new.json'
-    ],
-    '_bad' => [
-        'url' => 'https://raw.githubusercontent.com/boxsnake-php/simple-api-ssr/master/example/bad.json'
-    ]
-]));
-echo PHP_EOL . str_repeat('-', 80) . PHP_EOL;
+$options = $config->get($service);
+$page    = $template->get($service);
+$data    = $api->load($options);
 
-echo '</pre>';
+$template->render($data);

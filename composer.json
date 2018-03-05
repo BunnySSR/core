@@ -11,7 +11,8 @@
     "require": {
         "php": ">=5.4.0",
         "rmccue/requests": "^1.7",
-        "shudrum/array-finder": "^1.1"
+        "shudrum/array-finder": "^1.1",
+        "smarty/smarty": "^3.1"
     },
     "license": "MIT",
     "autoload": {
