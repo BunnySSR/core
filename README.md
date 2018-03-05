@@ -100,7 +100,7 @@ Simply speaking, the framework does the following steps:
         }
         ```
     * And then, you can access pages via `http://simple-api-ssr.dev/index.php?service=service_name` or `http://simple-api-ssr.dev/service_name`
-* If this is bundled with some api projects, you may want to use this as an host alias, e.g:
+* If this is bundled with some api projects, you may want to use this as a host alias, e.g:
     * Apache:
         ```xml
         <VirtualHost *:80>
@@ -118,7 +118,7 @@ Simply speaking, the framework does the following steps:
             index       index.html index.html index.php;
             root        /path/to/api/;
 
-            location /some_ssr/ {
+            location /some_ssr {
                 alias /path/to/project_name/public/
             }
         }
