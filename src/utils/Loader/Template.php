@@ -39,7 +39,7 @@ class Template
 
         foreach($finder as $engine => $path) {
             $filepath = $this->root . DIRECTORY_SEPARATOR . $path;
-            $content  = is_file($filepath) ? file_get_contents($filepath) : '';
+            $content  = is_file($filepath) ? file_get_contents($filepath) : FALSE;
 
             if($content !== FALSE && is_string($content)) {
                 $this->template = empty($content) ? '' : (string)$content;
