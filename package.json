@@ -1,5 +1,6 @@
 {
   "name": "simple-api-ssr",
+  "private": true,
   "scripts": {
     "commit": "git-cz",
     "semantic-release": "semantic-release"
