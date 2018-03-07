@@ -1,4 +1,4 @@
-[![][badge-version-php]][packagist-simple-api-ssr] [![][badge-version-packagist]][packagist-simple-api-ssr] [![][badge-download-month]][packagist-simple-api-ssr] [![][badge-license]][github-simple-api-ssr] [![][badge-commitizen-friendly]][github-commitizen] [![][badge-semantic-release]][github-semantic-release] [![][badge-irc]][irc]
+[![][badge-version-php]][packagist-simple-api-ssr] [![][badge-version-packagist]][packagist-simple-api-ssr] [![][badge-download-month]][packagist-simple-api-ssr] [![][badge-license]][github-simple-api-ssr] [![][badge-commitizen-friendly]][github-commitizen] [![][badge-semantic-release]][github-semantic-release] [![][badge-gitter]][gitter]
 
 A simple api-based server-side-rendering framework written in PHP.
 
@@ -130,7 +130,7 @@ Simply speaking, the framework does the following steps:
 [badge-license]: https://img.shields.io/github/license/boxsnake-php/simple-api-ssr.svg "license"
 [badge-commitizen-friendly]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg "Commitizen friendly"
 [badge-semantic-release]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg "semantic-release"
-[badge-irc]: https://img.shields.io/badge/irc-%23simple--api--ssr-orange.svg "irc"
+[badge-gitter]: https://img.shields.io/gitter/room/nwjs/nw.js.svg "gitter"
 
 [icon-yes]: https://raw.githubusercontent.com/boxsnake-nodejs/sequelize-autoload/master/images/icon-yes.png
 [icon-no]: https://raw.githubusercontent.com/boxsnake-nodejs/sequelize-autoload/master/images/icon-no.png
@@ -139,4 +139,4 @@ Simply speaking, the framework does the following steps:
 [github-commitizen]: http://commitizen.github.io/cz-cli/ "Commitizen friendly"
 [github-semantic-release]: https://github.com/semantic-release/semantic-release "Semantic Release"
 [packagist-simple-api-ssr]: https://packagist.org/packages/boxsnake/simple-api-ssr "simple-api-ssr"
-[irc]: http://webchat.freenode.net/?channels=simple-api-ssr "irc - #simple-api-ssr"
+[gitter]: https://gitter.im/boxsnake/simple-api-ssr?utm_source=share-link&utm_medium=link&utm_campaign=share-link "Gitter - boxsnake/simple-api-ssr"
