@@ -1,142 +1,117 @@
-[![][badge-version-php]][packagist-simple-api-ssr] [![][badge-version-packagist]][packagist-simple-api-ssr] [![][badge-download-month]][packagist-simple-api-ssr] [![][badge-license]][github-simple-api-ssr] [![][badge-commitizen-friendly]][github-commitizen] [![][badge-semantic-release]][github-semantic-release] [![][badge-gitter]][gitter]
+[![PHP version][*v-php]][@php]
+[![Package version][*v]][@packagist]
+[![Package downloads][*down]][@packagist]
+[![License][*license]][@license]
+[![Commitizen friendly][*commitizen]][@commitizen]
+[![Semantic release][*semantic]][@semantic]
+[![Gitter][*gitter]][@gitter]
 
 A simple api-based server-side-rendering framework written in PHP.
 
 ## Installation
-* Initialize project
-    * via Composer
-        ```bash
-        composer create-project boxsnake/simple-api-ssr project_name
-        ```
-    * via Git
-        ```bash
-        git clone https://github.com/boxsnake-php/simple-api-ssr project_name
-        ```
-        **Note:** This may contain latest experimental unstable features
-* Install dependencies
-    * Composer dependencies
-        ```bash
-        composer install
-        ```
-    * Node.js dependencies (Optional for developers):
-        ```bash
-        npm install
-        ```
+```bash
+# Install project
+composer create-project boxsnake/simple-api-ssr <project_path> # via Composer
 
-## Project structure
-```
-project_name/
-    |---- vendor/               # Composer dependencies
-    |---- node_modules/         # Node.js dependencies
-    |---- public/               # Web server root
-    |---- src/
-        |---- pages/            # Templates
-        |---- config/           # Api configurations
-        |---- utils/            # Utilities for simple-api-ssr framework
+# Or, install latest project (may contain unstable features)
+composer create-project boxsnake/simple-api-ssr <project_path> --prefer-dist dev-master # via Composer
+git clone https://github.com/boxsnake-php/simple-api-ssr <project_path>                 # via Git
+
+# Then, install dependencies
+composer install
+
+# (Optional) For developers, install node.js dependencies
+npm install
 ```
 
-## How it works
-For starters, it is better to demonstrate how the framework works.
-Simply speaking, the framework does the following steps:
-* Obtain `service` from HTTP request's GET params, and use it as service name
-* Load api configurations using service name
-* Fetch JSON-formatted api(s) via HTTP request, and store the result(s)
-* Load template using service name
-* Render template with api result(s), and output rendered page
+## Project Architecture
+```bash
+├───example                     # JSON examples
+├───node_modules                # Node.js dependencies
+├───public                      # Web host root
+│   ├───index.php
+│   └───assets                  # (Suggestive) Assets
+│       ├───js                  # (Suggestive) Javascript source
+│       ├───css                 # (Suggestive) CSS source
+│       └───image               # (Suggestive) Images
+├───src
+│   ├───pages                   # Templates
+│   ├───config                  # API configurations
+│   └───utils                   # Simple-API-SSR utilities
+└───vendor                      # Composer dependencies
+```
 
-## Api Configurations
-* Api configurations are stored in `/src/config/`, with filename formatted `service_name.json`
-* Api configuration content is exact a JSON file, which describes the api request attributes
-* The configuration file is like:
-    ```json
+## SSR Steps
+* Fetch `service_name` from URL `https://<host>:<port>/<pathname>?service=<service_name>`.
+* Load API config `<service_name>.json`.
+* Fetch API data using config.
+* Load template `<service_name>.<template_engine_name>.tpl`.
+* Render template with API results, and then print out.
+
+## Api Config
+* __Location:__ `/src/config/`
+* __Filename Scheme:__ `<service_name>.json`
+* __Example:__
+    ```javascript
     {
-        "data_1": {
-            "url": "url_1",
-            "get": {
-                "param_1": "param_new_1"
+        "New": {                                  // This key is consistent with keys in results data
+            "url": "https://fakeurl/fakepath/"    // (Required) API url
+            "get": {                              // (Optional) Pass SSR GET params to API (via GET)
+                "ssr_get_1": "api_get_1",
+                "ssr_get_2": "api_get_2",
+                ...
+            },
+            "post": {                             // (Optional) Pass SSR POST data to API (via POST)
+                "ssr_post_1": "api_post_1",
+                "ssr_post_2": "api_post_2",
+                ...
             }
         },
-        "data_2": {
-            "url": "url_2"
-        }
+        ...                                       // You can have multiple API sets
     }
     ```
-* Configuration fields:
-
-    | Field Name            | Type   | Optional         | Description                                                                                                                           |
-    | --------------------- | :----: | :--------------: | ------------------------------------------------------------------------------------------------------------------------------------- |
-    | `{mapping_name}`      | Object | ![yes][icon-yes] | A api configuration set, `{maaping_name}` can be any valid name, which is also used in templates.                                     |
-    | `{mapping_name}.url`  | String | ![no][icon-no]   | Api url.                                                                                                                              |
-    | `{mapping_name}.get`  | Object | ![yes][icon-yes] | GET params mapping. Object keys are GET param keys, and object values are GET param keys towards API url (in same configuration set). |
-    | `{mapping_name}.post` | Object | ![yes][icon-yes] | POST data mapping. Object keys are POST data keys, and object values are POST data keys towards API url (in same configuration set).  |
+* __Result Example:__
+    ```javascript
+    {
+        "New": {                // Key defined in config
+                                // This object is API result for `https://fakeurl/fakepath`
+            "Foo": "bar"
+        },
+        ...
+    }
+    ```
 
 ## Templates
-* Templates are stored in `/src/pages/`, with filename formatted `service_name.engine_name.tpl`
-* `engine_name` in templates can be one of these: `smarty`.
-* Predefined variables in templates:
-    * `data`: Fetched api data using api configurations. The members of `data` are api results mapped using `{mapping_name}` (see [here](#api-configurations))
-    * `get`: GET params from current request
-    * `post`: POST data from current request
+* __Location:__ `/src/pages/`
+* __Filename Scheme:__ `<service_name>.<template_engine_name>.tpl`
+* __Available Template Engines:__
+    * _Smarty3_ (`smarty`)
+* __Predefined Variables:__
+    * `data` from API results
+    * `get` from `$_GET`
+    * `post` from `$_POST`
 
-## Http server settings
-* Host web server to `project_name/public` folder
-* If this is a standalone project, host this as a virtual host will work, e.g:
-    * Apache:
-        ```xml
-        <VirtualHost *:80>
-            ServerName   simple-api-ssr.dev
-            DocumentRoot /path/to/project_name/public/
-            ...
-        </VirtualHost>
-        ```
-    * Nginx:
-        ```js
-        server {
-            listen      80;
-            server_name simple-api-ssr.dev;
-            index       index.html index.htm index.php;
-            root        /path/to/project_name/public/;
-            ...
-        }
-        ```
-    * And then, you can access pages via `http://simple-api-ssr.dev/index.php?service=service_name` or `http://simple-api-ssr.dev/service_name`
-* If this is bundled with some api projects, you may want to use this as a host alias, e.g:
-    * Apache:
-        ```xml
-        <VirtualHost *:80>
-            ServerName   some-api-service
-            DocumentRoot /path/to/api/
-            Alias        /some_ssr /path/to/project_name/public/
-            ...
-        </VirtualHost>
-        ```
-    * Nginx:
-        ```js
-        server {
-            listen      80;
-            server_name some-api-service;
-            index       index.html index.html index.php;
-            root        /path/to/api/;
+## Server settings
+* __Host Path:__ `<project_path>/public/`
+* (Option 1) __Host Standalone:__ [Apache][@host-sa-apache] / [Nginx][@host-sa-nginx]
+* (Option 2) __Host with API (using alias):__ [Apache][@host-alias-apache] / [Nginx][@host-alias-nginx]
 
-            location /some_ssr {
-                alias /path/to/project_name/public/
-            }
-        }
-    * And then, you can access pages via `http://some-api-service/some_ssr/index.php?service=service_name` or `http://some-api-service/some_ssr/service_name`
+[*v]: https://img.shields.io/packagist/v/boxsnake/simple-api-ssr.svg
+[*v-php]: https://img.shields.io/packagist/php-v/boxsnake/simple-api-ssr.svg
+[*down]: https://img.shields.io/packagist/dm/boxsnake/simple-api-ssr.svg
+[*license]: https://img.shields.io/github/license/boxsnake-php/simple-api-ssr.svg
+[*commitizen]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
+[*semantic]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[*gitter]: https://img.shields.io/gitter/room/nwjs/nw.js.svg?logo=gitter-white
 
-[badge-version-php]: https://img.shields.io/packagist/php-v/boxsnake/simple-api-ssr.svg "PHP version"
-[badge-version-packagist]: https://img.shields.io/packagist/v/boxsnake/simple-api-ssr.svg "release"
-[badge-download-month]: https://img.shields.io/packagist/dm/boxsnake/simple-api-ssr.svg "# downloads"
-[badge-license]: https://img.shields.io/github/license/boxsnake-php/simple-api-ssr.svg "license"
-[badge-commitizen-friendly]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg "Commitizen friendly"
-[badge-semantic-release]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg "semantic-release"
-[badge-gitter]: https://img.shields.io/gitter/room/nwjs/nw.js.svg?logo=gitter-white "gitter"
-
-[icon-yes]: https://raw.githubusercontent.com/boxsnake-nodejs/sequelize-autoload/master/images/icon-yes.png
-[icon-no]: https://raw.githubusercontent.com/boxsnake-nodejs/sequelize-autoload/master/images/icon-no.png
-
-[github-simple-api-ssr]: https://github.com/boxsnake-php/simple-api-ssr "simple-api-ssr"
-[github-commitizen]: http://commitizen.github.io/cz-cli/ "Commitizen friendly"
-[github-semantic-release]: https://github.com/semantic-release/semantic-release "Semantic Release"
-[packagist-simple-api-ssr]: https://packagist.org/packages/boxsnake/simple-api-ssr "simple-api-ssr"
-[gitter]: https://gitter.im/boxsnake/simple-api-ssr?utm_source=share-link&utm_medium=link&utm_campaign=share-link "Gitter - boxsnake/simple-api-ssr"
+[@github]: https://github.com/boxsnake-php/simple-api-ssr
+[@license]: https://github.com/boxsnake-php/simple-api-ssr/blob/master/LICENSE
+[@php]: http://php.net/downloads.php
+[@packagist]: https://packagist.org/packages/boxsnake/simple-api-ssr
+[@commitizen]: http://commitizen.github.io/cz-cli/
+[@semantic]: https://github.com/semantic-release/semantic-release
+[@gitter]: https://gitter.im/boxsnake/simple-api-ssr?utm_source=share-link&utm_medium=link&utm_campaign=share-link
+[@host-sa-apache]: https://httpd.apache.org/docs/2.4/vhosts/
+[@host-sa-nginx]: https://www.nginx.com/resources/wiki/start/topics/examples/server_blocks/#two-server-blocks-serving-static-files
+[@host-alias-apache]: https://httpd.apache.org/docs/2.4/mod/mod_alias.html#alias
+[@host-alias-nginx]: http://nginx.org/en/docs/http/ngx_http_core_module.html#alias
