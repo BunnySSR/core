@@ -8,6 +8,18 @@
 
 A simple api-based server-side-rendering framework written in PHP.
 
+## Table of Contents
+<!-- MarkdownTOC autolink="true" bracket="round" -->
+
+- [Installation](#installation)
+- [Project Architecture](#project-architecture)
+- [SSR Steps](#ssr-steps)
+- [Api Config](#api-config)
+- [Templates](#templates)
+- [Server settings](#server-settings)
+
+<!-- /MarkdownTOC -->
+
 ## Installation
 ```bash
 # Install project
@@ -98,7 +110,7 @@ npm install
 
 [*v]: https://img.shields.io/packagist/v/boxsnake/simple-api-ssr.svg
 [*v-php]: https://img.shields.io/packagist/php-v/boxsnake/simple-api-ssr.svg
-[*down]: https://img.shields.io/packagist/dm/boxsnake/simple-api-ssr.svg
+[*down]: https://img.shields.io/packagist/dt/boxsnake/simple-api-ssr.svg
 [*license]: https://img.shields.io/github/license/boxsnake-php/simple-api-ssr.svg
 [*commitizen]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
 [*semantic]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
