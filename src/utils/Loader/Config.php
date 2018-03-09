@@ -9,11 +9,6 @@ class Config
 
     public $config = [];
 
-    public function __construct($dir = '')
-    {
-        $this->set_root($dir);
-    }
-
     public function set_root($dir = '')
     {
         $this->root = realpath($dir);

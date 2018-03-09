@@ -12,11 +12,6 @@ class Template
     public $filename = '';
     public $engine   = '';
 
-    public function __construct($dir = '')
-    {
-        $this->set_root($dir);
-    }
-
     public function set_root($dir = '')
     {
         $this->root = realpath($dir);
