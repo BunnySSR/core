@@ -2,6 +2,7 @@
 namespace Util\Loader;
 
 use Util\Json\Parser as JsonParser;
+use Util\FileSystem\FileSystem as Fs;
 
 class Config
 {
@@ -11,6 +12,7 @@ class Config
 
     public function set_root($dir = '')
     {
+        Fs::mkdir($dir);
         $this->root = realpath($dir);
     }
 

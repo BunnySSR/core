@@ -1,6 +1,8 @@
 <?php
 namespace Util\Loader;
 
+use Util\FileSystem\FileSystem as Fs;
+
 class Template
 {
     private $root         = '';
@@ -14,11 +16,13 @@ class Template
 
     public function set_root($dir = '')
     {
+        Fs::mkdir($dir);
         $this->root = realpath($dir);
     }
 
     public function set_compile_root($dir = '')
     {
+        Fs::mkdir($dir);
         $this->compile_root = realpath($dir);
     }
 
