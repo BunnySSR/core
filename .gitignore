@@ -62,7 +62,7 @@ typings/
 
 # Sublime config files
 *.sublime-*
-!.sublime-project
+!*.sublime-project
 
 # Composer files
 /vendor/
