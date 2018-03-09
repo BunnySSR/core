@@ -26,14 +26,12 @@ A simple api-based server-side-rendering framework written in PHP.
 composer create-project boxsnake/simple-api-ssr <project_path> # via Composer
 
 # Or, install latest project (may contain unstable features)
-composer create-project boxsnake/simple-api-ssr <project_path> --prefer-dist dev-master # via Composer
-git clone https://github.com/boxsnake-php/simple-api-ssr <project_path>                 # via Git
+composer create-project boxsnake/simple-api-ssr <project_path> dev-master # (Option 1) via Composer
+git clone https://github.com/boxsnake-php/simple-api-ssr <project_path>   # (Option 2) via Git
 
-# Then, install dependencies
-composer install
-
-# (Optional) For developers, install node.js dependencies
-npm install
+cd <project_path> # Change to project folder
+composer install  # Install composer dependencies
+npm install       # (Optional) For developers, install node.js dependencies
 ```
 
 ## Project Architecture
