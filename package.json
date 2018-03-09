@@ -11,9 +11,9 @@
     "url": "https://github.com/boxsnake-php/simple-api-ssr.git"
   },
   "devDependencies": {
-    "@semantic-release/git": "^4.0.1",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.1.0",
+    "latest-release-git-tag": "^1.0.4",
     "semantic-release": "^12.4.1"
   },
   "dependencies": {},
@@ -31,7 +31,7 @@
     "publish": [
       "@semantic-release/github"
     ],
-    "getLastRelease": "@semantic-release/git"
+    "getLastRelease": "latest-release-git-tag"
   },
   "description": "A simple api-based server-side-rendering framework written in PHP.",
   "bugs": {
