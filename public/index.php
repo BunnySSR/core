@@ -25,6 +25,7 @@ $options = $config->get($service);
 
 # Template
 $template->set_root(APP_ROOT . '/src/pages/');
+$template->set_compile_root(APP_ROOT . '/runtime/compiled/');
 $template->set_engine($engine_name);
 $page = $template->get($service);
 

@@ -3,8 +3,9 @@ namespace Util\Loader;
 
 class Template
 {
-    private $root        = '';
-    private $engine_name = [];
+    private $root         = '';
+    private $compile_root = '';
+    private $engine_name  = [];
 
     public $template = '';
     public $filepath = '';
@@ -19,6 +20,11 @@ class Template
     public function set_root($dir = '')
     {
         $this->root = realpath($dir);
+    }
+
+    public function set_compile_root($dir = '')
+    {
+        $this->compile_root = realpath($dir);
     }
 
     public function set_engine($engine_name = [])
@@ -66,6 +72,7 @@ class Template
         switch($this->engine) {
             case 'smarty':
                 $template = new \Smarty();
+                $template->setCompileDir($this->compile_root);
                 $template->assign('data', $data);
                 $template->assign('get', $_GET);
                 $template->assign('post', $_POST);
