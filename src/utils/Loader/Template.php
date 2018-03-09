@@ -3,7 +3,8 @@ namespace Util\Loader;
 
 class Template
 {
-    private $root = '';
+    private $root        = '';
+    private $engine_name = [];
 
     public $template = '';
     public $filepath = '';
@@ -20,6 +21,14 @@ class Template
         $this->root = realpath($dir);
     }
 
+    public function set_engine($engine_name = [])
+    {
+        if(!empty($engine_name) && is_array($engine_name))
+            $this->engine_name = $engine_name;
+        else
+            $this->engine_name = [];
+    }
+
     public function init()
     {
         $this->template = '';
@@ -32,13 +41,11 @@ class Template
     {
         $this->init();
 
-        $filename = preg_replace('/(.+)\.(twig|smarty).tpl/iu', '$1', $name);
-        $finder = [
-            'smarty' => $filename . '.smarty.tpl'
-        ];
+        $filename = preg_replace('/(.+)\.(' . implode('|', $this->engine_name) . ')\.tpl/iu', '$1', $name);
 
-        foreach($finder as $engine => $path) {
-            $filepath = $this->root . DIRECTORY_SEPARATOR . $path;
+        // Find for templates
+        foreach($this->engine_name as $engine) {
+            $filepath = $this->root . DIRECTORY_SEPARATOR . "{$filename}.{$engine}.tpl";
             $content  = is_file($filepath) ? file_get_contents($filepath) : FALSE;
 
             if($content !== FALSE && is_string($content)) {

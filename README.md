@@ -44,6 +44,8 @@ npm install       # (Optional) For developers, install node.js dependencies
 │       ├───js                  # (Suggestive) Javascript source
 │       ├───css                 # (Suggestive) CSS source
 │       └───image               # (Suggestive) Images
+├───setting                     # Simple-API-SSR settings
+│   └───engine_name.json        # Available template engine names
 ├───src
 │   ├───pages                   # Templates
 │   ├───config                  # API configurations

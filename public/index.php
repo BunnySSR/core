@@ -13,12 +13,21 @@ unset($_GET['service']);
 $api      = new ApiGetter();
 $config   = new ConfigLoader();
 $template = new TemplateLoader();
+$setting  = new ConfigLoader();
 
-$template->set_root(APP_ROOT . '/src/pages/');
+# Global Settings
+$setting->set_root(APP_ROOT . '/setting/');
+$engine_name = $setting->get('engine_name');
+
+# API Config
 $config->set_root(APP_ROOT . '/src/config/');
-
 $options = $config->get($service);
-$page    = $template->get($service);
-$data    = $api->load($options);
 
+# Template
+$template->set_root(APP_ROOT . '/src/pages/');
+$template->set_engine($engine_name);
+$page = $template->get($service);
+
+# Render Template
+$data = $api->load($options);
 $template->render($data);
