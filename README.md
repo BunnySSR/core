@@ -16,7 +16,7 @@ A simple api-based server-side-rendering framework written in PHP.
 - [SSR Steps](#ssr-steps)
 - [Api Config](#api-config)
 - [Templates](#templates)
-- [Server settings](#server-settings)
+- [Server Settings](#server-settings)
 
 <!-- /MarkdownTOC -->
 
@@ -103,7 +103,7 @@ npm install       # (Optional) For developers, install node.js dependencies
     * `get` from `$_GET`
     * `post` from `$_POST`
 
-## Server settings
+## Server Settings
 * __Host Path:__ `<project_path>/public/`
 * (Option 1) __Host Standalone:__ [Apache][@host-sa-apache] / [Nginx][@host-sa-nginx]
 * (Option 2) __Host with API (using alias):__ [Apache][@host-alias-apache] / [Nginx][@host-alias-nginx]
