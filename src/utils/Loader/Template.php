@@ -51,7 +51,7 @@ class Template
         // Find for templates
         foreach($this->engine_name as $engine) {
             $filepath = $this->root . DIRECTORY_SEPARATOR . "{$filename}.{$engine}.tpl";
-            $content  = is_file($filepath) ? file_get_contents($filepath) : FALSE;
+            $content  = Fs::read_file($filepath);
 
             if($content !== FALSE && is_string($content)) {
                 $this->template = empty($content) ? '' : (string)$content;

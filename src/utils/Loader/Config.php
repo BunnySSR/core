@@ -28,7 +28,7 @@ class Config
         $path = preg_replace('/(.+)\.json/iu', '$1', $path);
         $path = $this->root . DIRECTORY_SEPARATOR . $path . '.json';
 
-        $content = is_file($path) ? file_get_contents($path) : FALSE;
+        $content = Fs::read_file($path);
         $content = JsonParser::parse($content);
 
         $this->config = $content;

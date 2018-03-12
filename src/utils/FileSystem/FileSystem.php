@@ -8,4 +8,9 @@ class FileSystem
         if(!is_dir($dir))
             mkdir($dir, $mode, TRUE);
     }
+
+    static public function read_file($path = '')
+    {
+        return is_file($path) ? file_get_contents($path) : FALSE;
+    }
 }
