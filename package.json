@@ -24,14 +24,13 @@
   },
   "release": {
     "noCi": true,
-    "verifyConditions": [
-      "@semantic-release/github"
-    ],
-    "prepare": [],
     "publish": [
+      {
+        "path": "@semantic-release/npm",
+        "npmPublish": false
+      },
       "@semantic-release/github"
-    ],
-    "getLastRelease": "@semantic-release/last-release-git-tag"
+    ]
   },
   "description": "A simple api-based server-side-rendering framework written in PHP.",
   "bugs": {
