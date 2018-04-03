@@ -11,7 +11,6 @@
     "url": "https://github.com/boxsnake-php/simple-api-ssr.git"
   },
   "devDependencies": {
-    "@semantic-release/last-release-git-tag": "^2.0.0",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.1.0",
     "semantic-release": "^12.4.1"
