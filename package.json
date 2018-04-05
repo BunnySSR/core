@@ -22,7 +22,6 @@
     }
   },
   "release": {
-    "noCi": true,
     "publish": [
       {
         "path": "@semantic-release/npm",

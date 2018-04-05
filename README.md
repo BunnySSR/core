@@ -1,4 +1,5 @@
 [![PHP version][*v-php]][@php]
+[![Travis CI][*ci]][@ci]
 [![Package version][*v]][@packagist]
 [![Package downloads][*down]][@packagist]
 [![License][*license]][@license]
@@ -109,6 +110,7 @@ npm install       # (Optional) For developers, install node.js dependencies
 * (Option 2) __Host with API (using alias):__ [Apache][@host-alias-apache] / [Nginx][@host-alias-nginx]
 
 [*v]: https://img.shields.io/packagist/v/boxsnake/simple-api-ssr.svg
+[*ci]: https://img.shields.io/travis/boxsnake-php/simple-api-ssr.svg
 [*v-php]: https://img.shields.io/packagist/php-v/boxsnake/simple-api-ssr.svg
 [*down]: https://img.shields.io/packagist/dt/boxsnake/simple-api-ssr.svg
 [*license]: https://img.shields.io/github/license/boxsnake-php/simple-api-ssr.svg
@@ -118,6 +120,7 @@ npm install       # (Optional) For developers, install node.js dependencies
 
 [@github]: https://github.com/boxsnake-php/simple-api-ssr
 [@license]: https://github.com/boxsnake-php/simple-api-ssr/blob/master/LICENSE
+[@ci]: https://travis-ci.org/boxsnake-php/simple-api-ssr
 [@php]: http://php.net/downloads.php
 [@packagist]: https://packagist.org/packages/boxsnake/simple-api-ssr
 [@commitizen]: http://commitizen.github.io/cz-cli/
