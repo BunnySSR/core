@@ -12,6 +12,10 @@ php:
   - '7.0'
   - '7.1'
   - '7.2'
+before_script:
+  - composer install
+script:
+  - echo 'Done.'
 after_success:
   - npm run travis-deploy-once "npm run semantic-release"
 branches:
