@@ -1,5 +1,8 @@
 language: php
 
+stages:
+  - compile
+
 php:
   - 5.4
   - 5.5
