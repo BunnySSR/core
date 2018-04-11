@@ -13,4 +13,16 @@ class FileSystem
     {
         return is_file($path) ? file_get_contents($path) : FALSE;
     }
+
+    static public function retrieve_file($paths = [])
+    {
+        foreach($paths as $path) {
+            $file = self::read_file($path);
+
+            if($file !== FALSE)
+                return $file;
+        }
+
+        return FALSE;
+    }
 }

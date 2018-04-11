@@ -58,7 +58,7 @@ npm install       # (Optional) For developers, install node.js dependencies
 * Fetch `service_name` from URL `https://<host>:<port>/<pathname>?service=<service_name>`.
 * Load API config `<service_name>.json`.
 * Fetch API data using config.
-* Load template `<service_name>.<template_engine_name>.tpl`.
+* Load template `<service_name>.<template_engine_name>` or `<service_name>.<template_engine_name>.tpl`.
 * Render template with API results, and then print out.
 
 ## Api Config
