@@ -67,7 +67,6 @@ class Template
 
     public function render($data = [])
     {
-        // echo $this->filepath;
         switch($this->engine) {
             case 'smarty':
                 $template = new \Smarty();
@@ -76,6 +75,18 @@ class Template
                 $template->assign('get', $_GET);
                 $template->assign('post', $_POST);
                 $template->display($this->filepath);
+                exit;
+            case 'pug':
+                $template = new \Pug([
+                    'pretty' => TRUE,
+                    'cache'  => $this->compile_root
+                ]);
+                $output = $template->renderFileWithPhp($this->filepath, [
+                    'data' => $data,
+                    'get'  => $_GET,
+                    'post' => $_POST
+                ]);
+                print_r($output);
                 exit;
             default:
                 exit;
