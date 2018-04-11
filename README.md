@@ -99,6 +99,8 @@ npm install       # (Optional) For developers, install node.js dependencies
 * __Filename Scheme:__ `<service_name>.<template_engine_name>.tpl`
 * __Available Template Engines:__
     * _Smarty3_ (`smarty`)
+    * _Pug_ (`pug`)
+    * _Jade_ (`jade`) - Former name of `pug`, __currently not supported__
 * __Predefined Variables:__
     * `data` from API results
     * `get` from `$_GET`
