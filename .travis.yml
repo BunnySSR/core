@@ -16,7 +16,7 @@ before_script:
 script:
   - echo 'Done.'
 after_success:
-  - npm run travis-deploy-once "npm run semantic-release"
+  - npm run semantic-release
 branches:
   except:
     - /^v\d+\.\d+\.\d+$/
