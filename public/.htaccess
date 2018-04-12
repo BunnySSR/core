@@ -4,5 +4,5 @@
     RewriteCond %{REQUEST_URI} !^/index.php$
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule (.+)(\.html)?$ index.php?service=$1
+    RewriteRule (.+)(\.html)?$ index.php?service=$1 [QSA]
 </IfModule>
