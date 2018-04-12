@@ -78,15 +78,28 @@ class Template
                 exit;
             case 'pug':
                 $template = new \Pug([
-                    'pretty' => TRUE,
-                    'cache'  => $this->compile_root
+                    'expressionLanguage' => 'js',
+                    'debug'              => TRUE,
+                    'allowMixedIndent'   => TRUE,
+                    'allowMixinOverride' => TRUE,
+                    'classAttribute'     => NULL,
+                    'expressionLanguage' => 'auto',
+                    'indentChar'         => "\t",
+                    'indentSize'         => 1,
+                    'keepBaseName'       => TRUE,
+                    'keepNullAttributes' => FALSE,
+                    'phpSingleLine'      => TRUE,
+                    'prettyprint'        => FALSE,
+                    'pugjs'              => TRUE,
+                    'restrictedScope'    => TRUE,
+                    'singleQuote'        => TRUE
                 ]);
-                $output = $template->renderFileWithPhp($this->filepath, [
+                $html = $template->renderFile($this->filepath, [
                     'data' => $data,
                     'get'  => $_GET,
                     'post' => $_POST
                 ]);
-                print_r($output);
+                echo $html;
                 exit;
             default:
                 exit;
