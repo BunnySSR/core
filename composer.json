@@ -13,7 +13,8 @@
         "rmccue/requests": "^1.7",
         "shudrum/array-finder": "^1.1",
         "smarty/smarty": "^3.1",
-        "pug-php/pug": "^3.1"
+        "pug-php/pug": "^3.1",
+        "jakeasmith/http_build_url": "^1"
     },
     "license": "MIT",
     "autoload": {

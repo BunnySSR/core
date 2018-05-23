@@ -55,7 +55,7 @@ class Getter
                     }
 
                     // Prebuild url and data for current api
-                    $url = $options['url'] . (empty($get_params) ? '' : ('?' . http_build_query($get_params)));
+                    $url = http_build_url($options['url'], ['query' => http_build_query($get_params)], HTTP_URL_JOIN_QUERY);
 
                     // Detect request Data
                     if(empty($post_params)) {
