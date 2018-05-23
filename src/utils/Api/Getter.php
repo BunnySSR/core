@@ -51,7 +51,7 @@ class Getter
                             $post_params[$target] = $post->get($target);
                         }
 
-                        $post_params = $post_params->post();
+                        $post_params = $post_params->get();
                     }
 
                     // Prebuild url and data for current api
